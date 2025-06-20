@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Promotion Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-image: url("{{ url_for('static', filename='images/background.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        h2 {
+            padding-top: 20px;
+            text-align: center;
+            color: black;
+        }
+
+        .form-box {
+            position: absolute;
+            top: 16%;
+            left: 6%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px 35px;
+            border-radius: 10px;
+            color: black;
+        }
+
+        .form-box td {
+            padding: 16px 12px;
+        }
+
+        input[type="text"], select {
+            width: 240px;
+            padding: 7px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: green;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+
+        .output-box {
+            position: absolute;
+            top: 45%;
+            right: 6%;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            color: black;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <h2>Employee Promotion prediction using ML</h2>
+
+    <form method="post" action="/datas">
+        <div class="form-box">
+            <table>
+                <tr>
+                    <td>Enter department:</td>
+                    <td>
+                        <select name="dept">
+                            <option value="Sales & Marketing">Sales & Marketing</option> 
+                            <option value="Operations">Operations</option>
+                            <option value="Technology">Technology</option> 
+                            <option value="Analytics">Analytics</option>
+                            <option value="R&D">R&D</option>
+                            <option value="Procurement">Procurement</option>
+                            <option value="Finance">Finance</option>
+                            <option value="HR">HR</option>
+                            <option value="Legal">Legal</option>
+                        </select>
+                    </td>
+                </tr>                                              
+                <tr><td>Enter No. of trainings:</td><td><input type="text" name="not"></td></tr>
+                <tr><td>Enter Previous year rating:</td><td><input type="text" name="pyr"></td></tr> 
+                <tr><td>Enter Length of service:</td><td><input type="text" name="los"></td></tr>  
+                <tr><td>Enter KPIs met &gt; 80%:</td><td><input type="text" name="kpi"></td></tr>
+                <tr><td>Enter Awards won?:</td><td><input type="text" name="aw"></td></tr>
+                <tr><td>Enter Average training score:</td><td><input type="text" name="ats"></td></tr>
+                <tr><td></td><td><input type="submit" value="Submit"></td></tr>
+            </table>
+        </div>
+    </form>
+
+    {% if data %}
+    <div class="output-box">
+        {{ data }}
+    </div>
+    {% endif %}
+</body>
+</html>
